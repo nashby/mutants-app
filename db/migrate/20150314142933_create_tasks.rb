@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.string :description
 
-      t.reference :team, index: true
+      t.references :team, index: true
 
       t.timestamps null: false
     end
