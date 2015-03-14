@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Teams' do
+feature 'Manage teams' do
   before do
     Task.create!(name: 'Task 1')
     Mutant.create!(name: 'Jubilee')
@@ -19,5 +19,16 @@ feature 'Teams' do
 
     expect(page.current_path).to eq(team_path(Team.last))
     expect(page).to have_content('Team was successfully created')
+  end
+
+  scenario 'Removing existing one' do
+    Team.create!(name: 'Team Jubilee')
+
+    visit teams_path
+
+    click_button('Delete')
+
+    expect(page.current_path).to eq(teams_path)
+    expect(page).to have_content('Team was successfully destroyed')
   end
 end

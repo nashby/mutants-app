@@ -43,4 +43,14 @@ describe TeamsController do
       expect(team.mutants).to include(mutant)
     end
   end
+
+  describe '#destroy' do
+    it 'destroys team' do
+      team = Team.create!(name: 'Team Jubilee')
+
+      expect {
+        delete :destroy, id: team.id
+      }.to change { Team.count }.by(-1)
+    end
+  end
 end

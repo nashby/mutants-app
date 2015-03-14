@@ -1,4 +1,26 @@
+%h2 Teams
+
 = link_to 'New team', new_team_path
 
-- @teams.each do |team|
-  %div= team.name
+%table.table.table-hover
+  %thead
+    %tr
+      %th #
+      %th Name
+      %th Mutants
+      %th Tasks
+      %th Actions
+
+  %tbody
+    - @teams.each_with_index do |team, i|
+      %tr
+        %th= i + 1
+        %td= link_to team.name, team
+        %td
+          - team.mutants.each do |mutant|
+            = link_to mutant.name, mutant
+        %td
+          - team.tasks.each do |task|
+            = link_to task.name, task
+        %td
+          = button_to 'Delete', team_path(team), method: :delete, class: 'btn btn-danger btn-xs'
