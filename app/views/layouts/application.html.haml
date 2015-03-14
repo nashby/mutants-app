@@ -7,6 +7,17 @@
   = csrf_meta_tags
 
   %body
+    %nav.navbar.navbar-default.navbar-fixed-top
+      %div.container
+        %div.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li{class: ('active' if current_page?(controller: 'mutants'))}
+              = link_to 'Mutants', mutants_path
+            %li{class: ('active' if current_page?(controller: 'teams'))}
+              = link_to 'Teams', teams_path
+            %li{class: ('active' if current_page?(controller: 'tasks'))}
+              = link_to 'Tasks', tasks_path
+
     %div.wrapper.wrapper-content
       %div.container
         %div.row
