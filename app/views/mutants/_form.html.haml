@@ -1,0 +1,7 @@
+= simple_form_for mutant do |f|
+  = f.input :name
+  = f.input :description
+
+  = f.association :teams
+
+  = f.submit 'Save'
