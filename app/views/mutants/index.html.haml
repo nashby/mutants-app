@@ -16,8 +16,10 @@
         %th= i + 1
         %td= link_to mutant.name, mutant
         %td
-          - mutant.teams.each do |team|
-            = link_to team.name, team
+          - if mutant.teams.present?
+            = safe_join(mutant.teams.map { |team| link_to team.name, team }, ', ')
+          - else
+            = link_to 'Not assigned. Assign?', edit_mutant_path(mutant)
 
         %td
           = button_to 'Delete', mutant_path(mutant), method: :delete, class: 'btn btn-danger btn-xs'
