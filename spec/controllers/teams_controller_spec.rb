@@ -24,4 +24,13 @@ describe TeamsController do
       expect(response.body).to have_button('Save')
     end
   end
+
+  describe '#create' do
+    it 'creates new team' do
+      post :create, team: { name: 'Team Jubilee', description: 'Description of the Team Jubilee' }
+
+      expect(Team.count).to eq(1)
+      expect(Team.last.name).to eq('Team Jubilee')
+    end
+  end
 end

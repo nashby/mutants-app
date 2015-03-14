@@ -7,5 +7,13 @@
   = csrf_meta_tags
 
   %body
-    %div.container
-      = yield
+    %div.wrapper.wrapper-content
+      %div.container
+        %div.row
+          %div.content
+            - if flash[:notice]
+              %div.alert.alert-success= flash[:notice]
+            - if flash[:error]
+              %div.alert.alert-danger= flash[:error]
+
+            = yield
