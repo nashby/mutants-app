@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
-    @teams = Team.all
+    @teams = Team.includes(:mutants, :tasks).all
   end
 
   def show

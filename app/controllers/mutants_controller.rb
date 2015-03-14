@@ -2,7 +2,7 @@ class MutantsController < ApplicationController
   before_action :set_mutant, only: [:show, :edit, :update, :destroy]
 
   def index
-    @mutants = Mutant.all
+    @mutants = Mutant.includes(:teams).all
   end
 
   def show
