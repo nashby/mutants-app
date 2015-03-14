@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
     @teams = Team.all
@@ -19,6 +19,12 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.create(team_params)
+
+    respond_with @team
+  end
+
+  def update
+    @team.update_attributes(team_params)
 
     respond_with @team
   end

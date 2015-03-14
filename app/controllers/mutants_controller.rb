@@ -1,5 +1,5 @@
 class MutantsController < ApplicationController
-  before_action :set_mutant, only: [:show, :edit, :destroy]
+  before_action :set_mutant, only: [:show, :edit, :update, :destroy]
 
   def index
     @mutants = Mutant.all
@@ -19,6 +19,12 @@ class MutantsController < ApplicationController
 
   def create
     @mutant = Mutant.create(mutant_params)
+
+    respond_with @mutant
+  end
+
+  def update
+    @mutant.update_attributes(mutant_params)
 
     respond_with @mutant
   end

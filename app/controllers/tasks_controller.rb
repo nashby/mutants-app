@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -19,6 +19,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
+
+    respond_with @task
+  end
+
+  def update
+    @task.update_attributes(task_params)
 
     respond_with @task
   end

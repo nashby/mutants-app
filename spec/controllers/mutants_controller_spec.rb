@@ -43,6 +43,16 @@ describe MutantsController do
     end
   end
 
+  describe '#update' do
+    it 'updates existing mutant' do
+      mutant = Mutant.create!(name: 'Jubilee')
+
+      put :update, id: mutant.id, mutant: { name: 'Karma' }
+
+      expect(Mutant.last.name).to eq('Karma')
+    end
+  end
+
   describe '#destroy' do
     it 'destroys mutant' do
       mutant = Mutant.create!(name: 'Jubilee')

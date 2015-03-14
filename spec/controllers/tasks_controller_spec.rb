@@ -46,6 +46,16 @@ describe TasksController do
     end
   end
 
+  describe '#update' do
+    it 'updates existing task' do
+      task = Task.create!(name: 'Task 1')
+
+      put :update, id: task.id, task: { name: 'Task 2' }
+
+      expect(Task.last.name).to eq('Task 2')
+    end
+  end
+
   describe '#destroy' do
     it 'destroys task' do
       task = Task.create!(name: 'Task 1')

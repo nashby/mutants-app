@@ -44,6 +44,16 @@ describe TeamsController do
     end
   end
 
+  describe '#update' do
+    it 'updates existing team' do
+      team = Team.create!(name: 'Team Jubilee')
+
+      put :update, id: team.id, team: { name: 'Team Karma' }
+
+      expect(Team.last.name).to eq('Team Karma')
+    end
+  end
+
   describe '#destroy' do
     it 'destroys team' do
       team = Team.create!(name: 'Team Jubilee')
