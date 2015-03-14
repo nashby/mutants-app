@@ -26,11 +26,21 @@ describe TeamsController do
   end
 
   describe '#create' do
+    let(:task)   { Task.create!(name: 'Task 1') }
+    let(:mutant) { Mutant.create!(name: 'Jubilee') }
+
     it 'creates new team' do
-      post :create, team: { name: 'Team Jubilee', description: 'Description of the Team Jubilee' }
+      post :create, team: { name: 'Team Jubilee',
+                            description: 'Description of the Team Jubilee',
+                            task_ids: [task.id],
+                            mutant_ids: [mutant.id] }
+
+      team = Team.last
 
       expect(Team.count).to eq(1)
-      expect(Team.last.name).to eq('Team Jubilee')
+      expect(team.name).to eq('Team Jubilee')
+      expect(team.tasks).to include(task)
+      expect(team.mutants).to include(mutant)
     end
   end
 end
